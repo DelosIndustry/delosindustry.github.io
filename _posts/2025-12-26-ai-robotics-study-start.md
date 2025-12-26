@@ -16,7 +16,8 @@ tags:
 ### 주요 학습 목표
 
 1. **인공지능 기초**: 머신러닝, 딥러닝 이론 학습
-2. **로보틱스**: ROS2, 제어 이론, SLAM 등
-3. **프로젝트**: Spot Micro, Anomaly Detection 기반 Kaggle의 NASA Turbofan Engine Degradation
+2. **논문 리뷰**: 최신 AI/Robotics 트렌드 파악 및 핵심 논문 분석
+3. **로보틱스**: ROS2, 제어 이론, SLAM 등
+4. **프로젝트**: Spot Micro, Anomaly Detection 기반 Kaggle의 NASA Turbofan Engine Degradation
 
 앞으로 꾸준히 학습 일지를 남길 예정입니다.
