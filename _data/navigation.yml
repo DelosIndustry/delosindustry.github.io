@@ -15,8 +15,8 @@ sidebar-category:
         url: /categories/논문리뷰/RS/
       - title: "Robotics / Physical AI"
         url: /categories/논문리뷰/Robotics/
-      - title: "3D Vision"
-        url: /categories/논문리뷰/3DV/
+      - title: "Vision SLAM"
+        url: /categories/논문리뷰/VisionSLAM/
       - title: "NLP"
         url: /categories/논문리뷰/NLP/
       - title: "Audio & Speech"
