@@ -1,9 +1,37 @@
 main:
-  - title: "Posts"
-    url: /posts/
-  - title: "Categories"
-    url: /categories/
   - title: "Tags"
     url: /tags/
-  - title: "About"
-    url: /about/
+
+sidebar-category:
+  - title: "전체 게시글"
+    url: /posts/
+
+  - title: "논문리뷰"
+    url: /categories/논문리뷰/
+    children:
+      - title: "Computer Vision"
+        url: /categories/논문리뷰/CV/
+      - title: "Remote Sensing"
+        url: /categories/논문리뷰/RS/
+      - title: "Robotics / Physical AI"
+        url: /categories/논문리뷰/Robotics/
+      - title: "3D Vision"
+        url: /categories/논문리뷰/3DV/
+      - title: "NLP"
+        url: /categories/논문리뷰/NLP/
+      - title: "Audio & Speech"
+        url: /categories/논문리뷰/AudioSpeech/
+      - title: "RL"
+        url: /categories/논문리뷰/RL/
+
+  - title: "구현 / 프로그래밍"
+    url: /categories/프로그래밍/
+
+  - title: "공부"
+    url: /categories/공부/
+
+  - title: "프로젝트"
+    url: /categories/프로젝트/
+
+  - title: "GAME"
+    url: /categories/GAME/
