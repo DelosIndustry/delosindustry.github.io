@@ -1,0 +1,30 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+/* 1) 전체 최대 폭을 키워서
+   - 좌측 프로필/메뉴가 “더 왼쪽”으로 붙는 체감
+   - 본문도 같이 넓어지게 함 */
+$max-width: 1680px;  // 1500~1800px 사이에서 취향대로
+
+/* 2) (선택) 사이드바 폭을 약간 줄여 본문 공간 확보
+   - 값이 작아질수록 본문이 더 넓어집니다 */
+$right-sidebar-width-narrow: 160px;
+$right-sidebar-width: 220px;
+$right-sidebar-width-wide: 260px;
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
+@import "minimal-mistakes";
+
+/* 3) (선택) 좌우 패딩/간격을 조금 줄여 “더 꽉 차게” 보이도록 */
+@media (min-width: 64em) {
+  .page__inner-wrap {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* 좌측 사이드바(프로필/메뉴)와 본문 사이 간격이 과하면 줄이기 */
+  .sidebar {
+    padding-right: 0.75rem;
+  }
+}
