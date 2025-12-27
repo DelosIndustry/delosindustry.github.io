@@ -61,7 +61,7 @@ plugins:
 
 author:
   name   : "Hyun Son"
-  avatar : "/assets/images/bio-photo.jpg"
+  avatar : "/assets/images/face.png"
   bio    : "가장 높은 깨달음을 향해."
   links:
     - label: "GitHub"
