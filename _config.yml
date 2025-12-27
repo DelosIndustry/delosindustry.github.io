@@ -1,18 +1,16 @@
-# Site settings
 title: 깨달음으로 가는 길
 email: dhson@office.knu.ac.kr
 description: >-
   가장 높은 깨달음을 향해.
 github_username: DelosIndustry
 
-# (권장) 한국어/시간대
+# kimjy99처럼 날짜/언어/시간대
 locale: "ko-KR"
 timezone: "Asia/Seoul"
 
 minimal_mistakes_skin: default
 search: true
 
-# Build settings
 markdown: kramdown
 kramdown:
   input: GFM
@@ -22,7 +20,6 @@ kramdown:
 
 remote_theme: mmistakes/minimal-mistakes
 
-# Outputting
 permalink: /:categories/:title/
 paginate: 5
 paginate_path: /page:num/
@@ -31,13 +28,13 @@ include:
   - _pages
 
 exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
+   - Gemfile
+   - Gemfile.lock
+   - node_modules
+   - vendor/bundle/
+   - vendor/cache/
+   - vendor/gems/
+   - vendor/ruby/
 
 plugins:
   - jekyll-paginate
@@ -69,21 +66,22 @@ footer:
       url: "mailto:dhson@office.knu.ac.kr"
 
 defaults:
-  # _posts
   - scope:
       path: ""
       type: posts
     values:
       layout: single
       author_profile: true
-      read_time: true
-      comments: true
-      share: true
-      related: true
       sidebar:
-        nav: "sidebar-category"   # ★ 좌측 토글 메뉴
+        nav: "sidebar-category"   # ★ kimjy99처럼 좌측 메뉴 트리
+      classes: wide
+      read_time: false
+      comments: false
+      share: false
+      related: false
+      toc: false
+      toc_sticky: false
 
-  # _pages
   - scope:
       path: "_pages"
       type: pages
@@ -91,7 +89,10 @@ defaults:
       layout: single
       author_profile: true
       sidebar:
-        nav: "sidebar-category"   # ★ 좌측 토글 메뉴
+        nav: "sidebar-category"
+      classes: wide
+      comments: false
+      share: false
 
 category_archive:
   type: liquid
