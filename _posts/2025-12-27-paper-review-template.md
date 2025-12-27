@@ -21,8 +21,7 @@ tags:
 *   **Link**: [[논문 링크]](https://doi.org/10.1109/LGRS.2025.3608178)
 
 ## 초록 (Abstract)
-> 원격탐사 영상 초해상도(SR)는 도시 계획·재난 대응 등에서 중요하지만, 기존 생성형 SR은 **시각적 선명도(Perceptual)–사실성 (Factual)–추론 속도(Speed)** 사이의 트레이드오프 때문에 성능이 쉽게 한계에 부딪힌다.  
-> 본 논문은 이를 해결하기 위해 **2-stage diffusion SR**을 제안한다: 1단계에서는 LR 입력만을 사용하는 **guidance-free diffusion**으로 “사실에 근거한(base)” 이미지를 먼저 만들며, 이로써 **semantic hallucination 위험을 낮춘다.**  
+> 원격탐사 영상 초해상도(SR)는 도시 계획·재난 대응 등에서 중요하지만, 기존 생성형 SR은 **시각적 선명도(Perceptual)–사실성 (Factual)–추론 속도(Speed)** 사이의 트레이드오프 때문에 성능이 쉽게 한계에 부딪힌다. 본 논문은 이를 해결하기 위해 **2-stage diffusion SR**을 제안한다: 1단계에서는 LR 입력만을 사용하는 **guidance-free diffusion**으로 “사실에 근거한(base)” 이미지를 먼저 만들며, 이로써 **semantic hallucination 위험을 낮춘다.**  
 > 2단계에서는 **VLM + ControlNet 기반의 가이던스**로 고주파 디테일을 복원해 SR 품질을 끌어올리고, 동시에 **동적 추론 가속**을 적용해 효율을 확보한다.  
 > 실험 결과, 제안 방법은 **CLIP-IQA 기준 높은 지각 품질**과 **구조적 보존(Structural integrity)**을 함께 달성하며, 실용적인 속도에서 기존의 **fidelity–hallucination 트레이드오프를 넘어서는** 신뢰도 높은 SR을 가능하게 한다.
 
