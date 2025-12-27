@@ -2,16 +2,16 @@
 title: "[Paper Review] A Novel VLM-Guided Diffusion Model for Remote Sensing Image Super-Resolution"
 date: 2025-12-27
 categories:
-  - Paper Review
+  - 논문리뷰
 tags:
-  - Deep Learning
-  - Computer Vision
   - Remote Sensing
-  - Super-Resolution
-  - Diffusion Model
+  - Computer Vision
+  - Diffusion
   - Vision-Language Model
+  - Super-Resolution
   - Multimodal
   - Transformer
+  - Deep Learning
 ---
 
 ## 논문 정보 (Information)
