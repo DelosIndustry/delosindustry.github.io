@@ -1,6 +1,6 @@
 ---
-title: "논문리뷰 / SLAM"
-permalink: /categories/논문리뷰/SLAM/
+title: "Invest"
+permalink: /categories/Invest/
 layout: single
 author_profile: true
 sidebar:
@@ -8,8 +8,7 @@ sidebar:
 ---
 
 {% assign posts = site.posts
-  | where_exp: "post", "post.categories contains '논문리뷰'"
-  | where_exp: "post", "post.tags contains 'SLAM'"
+  | where_exp: "post", "post.categories contains 'Invest'"
   | sort: "date"
   | reverse
 %}

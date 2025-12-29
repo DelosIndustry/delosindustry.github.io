@@ -4,7 +4,6 @@ description: >-
   가장 높은 깨달음을 향해.
 github_username: DelosIndustry
 
-# kimjy99처럼 날짜/언어/시간대
 locale: "ko-KR"
 timezone: "Asia/Seoul"
 
