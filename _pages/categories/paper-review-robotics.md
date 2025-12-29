@@ -1,5 +1,5 @@
 ---
-title: "논문리뷰 / Robotics / Physical AI"
+title: "논문리뷰 / Robotics & Physical AI"
 permalink: /categories/논문리뷰/Robotics/
 layout: single
 author_profile: true
