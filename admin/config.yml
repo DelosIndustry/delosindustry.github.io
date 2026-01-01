@@ -1,9 +1,8 @@
 backend:
-  name: github
-  repo: DelosIndustry/delosindustry.github.io # GitHub 저장소 이름 (사용자명/저장소명)
-  branch: main # 사용하는 브랜치 이름 (main 또는 master 확인 필요)
+  name: git-gateway
+  branch: main 
 
-media_folder: "assets/images" # 이미지가 저장될 실제 경로
+media_folder: "assets/images"
 public_folder: "/assets/images" # 마크다운에서 이미지를 불러올 때 사용할 경로
 
 # 한글 파일명 문제 방지를 위한 슬러그 설정
