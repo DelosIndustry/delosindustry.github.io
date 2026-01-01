@@ -14,16 +14,14 @@ tags:
   - Deep Learning
 ---
 
-## 논문 정보 (Information)
-*   **Title**: A Novel VLM-Guided Diffusion Model for Remote Sensing Image Super-Resolution
-*   **Authors**: Mingyu Sung, Mu-Gyeong Gong, Seung-Jae Ham, Il-Min Kim, Sangseok Yun, Jae-Mo Kang
-*   **Conference**: IEEE Geoscience and Remote Sensing Letters (LGRS), Vol. 22, 2025
-*   **Link**: [[논문 링크]](https://doi.org/10.1109/LGRS.2025.3608178)
+## 논문 정보
+- **Title**: A Novel VLM-Guided Diffusion Model for Remote Sensing Image Super-Resolution
+- **Authors**: Mingyu Sung, Mu-Gyeong Gong, Seung-Jae Ham, Il-Min Kim, Sangseok Yun, Jae-Mo Kang
+- **Conference**: IEEE Geoscience and Remote Sensing Letters (LGRS), Vol. 22, 2025
+- **Link**: [논문 링크](https://doi.org/10.1109/LGRS.2025.3608178)
 
 ## 초록 (Abstract)
 > 원격탐사 영상 초해상도(SR)는 도시 계획·재난 대응 등에서 중요하지만, 기존 생성형 SR은 **시각적 선명도(Perceptual)–사실성 (Factual)–추론 속도(Speed)** 사이의 트레이드오프 때문에 성능이 쉽게 한계에 부딪힌다. 본 논문은 이를 해결하기 위해 **2-stage diffusion SR**을 제안한다: 1단계에서는 LR 입력만을 사용하는 **guidance-free diffusion**으로 “사실에 근거한(base)” 이미지를 먼저 만들며, 이로써 **semantic hallucination 위험을 낮춘다.**  2단계에서는 **VLM + ControlNet 기반의 가이던스**로 고주파 디테일을 복원해 SR 품질을 끌어올리고, 동시에 **동적 추론 가속**을 적용해 효율을 확보한다. 실험 결과, 제안 방법은 **CLIP-IQA 기준 높은 지각 품질**과 **구조적 보존(Structural integrity)**을 함께 달성하며, 실용적인 속도에서 기존의 **fidelity–hallucination 트레이드오프를 넘어서는** 신뢰도 높은 SR을 가능하게 한다.
-
-아래 정리는 **사용자께서 정리해 둔 PDF 요약본**을 근거로, 요청하신 양식에 맞춰 재구성한 것입니다. :contentReference[oaicite:0]{index=0}
 
 ---
 
@@ -155,6 +153,7 @@ I_SR = decode(h_out)
 ---
 
 ## 실험 결과 (Experiments)
+![](2026-01-01-13-26-41.png)
 
 ### 데이터셋: 어떤 데이터셋을 사용했는가?
 - 요약본 기준으로 **원격탐사 분야 “국룰 데이터 3개”**를 사용했다고 정리되어 있으며, 표/속도 비교에서 **WHU-RS19**가 명시됩니다. :contentReference[oaicite:14]{index=14}

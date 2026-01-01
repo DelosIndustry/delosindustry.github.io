@@ -1,0 +1,57 @@
+{
+	"New Blog Post": {
+		"scope": "markdown",
+		"prefix": "new-post",
+		"body": [
+			"---",
+			"title: \"$1\"",
+			"date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+			"categories:",
+			"  - ${2|논문리뷰,프로그래밍,공부,프로젝트,Invest|}",
+			"tags:",
+			"  - $3",
+			"---",
+			"",
+			"## 개요",
+			"$0"
+		],
+		"description": "블로그 새 글 기본 양식"
+	},
+	"Paper Review Template": {
+		"scope": "markdown",
+		"prefix": "paper-review",
+		"body": [
+			"---",
+			"title: \"[Paper Review] $1\"",
+			"date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+			"categories:",
+			"  - 논문리뷰",
+			"tags:",
+			"  - ${2:CV/NLP/Robotics}",
+			"---",
+			"",
+			"## 논문 정보",
+			"- **Title**: $1",
+			"- **Authors**: $3",
+			"- **Conference**: ${4:CVPR/ICCV/ECCV/IROS/ICRA} $CURRENT_YEAR",
+			"- **Link**: [논문 링크]($5)",
+			"",
+			"## 초록 (Abstract)",
+			"- $6",
+			"",
+			"---",
+			"",
+			"## 핵심 내용",
+			"$0"
+		],
+		"description": "논문 리뷰 전용 양식"
+	},
+	"Image (Resized)": {
+		"scope": "markdown",
+		"prefix": "img-resize",
+		"body": [
+			"![${1:설명}](${2:이미지경로}){: width=\"${3:80}%\" .align-center}"
+		],
+		"description": "이미지 크기 조절 및 중앙 정렬 (Jekyll Kramdown)"
+	}
+}
