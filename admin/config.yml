@@ -1,0 +1,41 @@
+backend:
+  name: github
+  repo: DelosIndustry/delosindustry.github.io # GitHub 저장소 이름 (사용자명/저장소명)
+  branch: main # 사용하는 브랜치 이름 (main 또는 master 확인 필요)
+
+media_folder: "assets/images" # 이미지가 저장될 실제 경로
+public_folder: "/assets/images" # 마크다운에서 이미지를 불러올 때 사용할 경로
+
+# 한글 파일명 문제 방지를 위한 슬러그 설정
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: "posts"
+    label: "포스트 (Posts)"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - {label: "레이아웃", name: "layout", widget: "hidden", default: "single"}
+      - {label: "제목", name: "title", widget: "string"}
+      - {label: "작성일", name: "date", widget: "datetime"}
+      
+      - label: "카테고리 (Categories)"
+        name: "categories"
+        widget: "list"
+        default: ["논문리뷰"]
+        hint: "예: 논문리뷰, 프로그래밍, 공부, 프로젝트"
+      
+      - label: "태그 (Tags)"
+        name: "tags"
+        widget: "list"
+        hint: "소분류로 사용됩니다. 예: CV, NLP, Robotics"
+      
+      - label: "본문"
+        name: "body"
+        widget: "markdown"
