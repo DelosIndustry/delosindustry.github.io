@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: main 
+  branch: master
 
 media_folder: "assets/images"
 public_folder: "/assets/images" # 마크다운에서 이미지를 불러올 때 사용할 경로
