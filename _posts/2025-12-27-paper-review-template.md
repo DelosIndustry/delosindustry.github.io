@@ -153,7 +153,7 @@ I_SR = decode(h_out)
 ---
 
 ## 실험 결과 (Experiments)
-![](delosindustry.github.io\assets\images\paper_img\2026-01-01-13-26-41.png)
+![](/assets/images/paper_img/2026-01-01-13-26-41.png)
 
 ### 데이터셋: 어떤 데이터셋을 사용했는가?
 - 요약본 기준으로 **원격탐사 분야 “국룰 데이터 3개”**를 사용했다고 정리되어 있으며, 표/속도 비교에서 **WHU-RS19**가 명시됩니다. :contentReference[oaicite:14]{index=14}
