@@ -81,6 +81,7 @@ defaults:
       related: false
       toc: false
       toc_sticky: false
+      mathjax: true
 
   - scope:
       path: "_pages"
