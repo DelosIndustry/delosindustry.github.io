@@ -13,7 +13,7 @@ search: true
 
 markdown: kramdown
 kramdown:
-  input: GFM
+  input: kramdown
   hard_wrap: false
   auto_ids: true
   math_engine: mathjax
