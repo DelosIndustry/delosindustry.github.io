@@ -80,10 +80,10 @@ denoising step $t$에서 U-Net 블록의 “가벼운 앞단(첫 sub-layer)”�
 - $c_{VLM}$: VLM이 제공하는 의미 조건(텍스트/semantic)  
 - $g$: ControlNet이 제공하는 구조/조건 가이던스  
 - $B_1(\cdot)$: 블록 내부 **첫 sub-layer**(가벼운 앞단 연산) 
-**앞단 출력 및 변화량**
+**앞단 출력 및 변화량**  
 $$
 h_1^{(t)} = B_1(e_t,\, t,\, c_{VLM},\, g)
-$$
+$$  
 $$
 \Delta h_1^{(t)} = h_1^{(t)} - h_1^{(t-1)}
 $$
@@ -116,32 +116,6 @@ $$
 - **Stage 1**에서 “의미를 강제로 주입하지 않고” 사실 기반의 base를 만들면,
   - 구조/경계의 기본 골격이 안정적으로 형성되고
   - Stage 2에서 VLM이 디테일을 보강하더라도 base를 근거로 하므로 **환각을 억제**한다는 논리입니다.
-### 간단 의사코드(Pseudo-code)
-```python
-# Stage 1: fact-based base generation (no VLM)
-x1 = SR3_diffusion(I_LR, steps=T1)
-
-# Stage 2: VLM + ControlNet guided refinement with dynamic skipping
-c_vlm = VLM_caption_or_condition(x1)      # semantic conditioning
-g = ControlNet_guidance(x1)               # structural guidance
-
-for t in range(1, T2+1):
-    h1_t = B1(e_t, t, c_vlm, g)
-    if t == 1:
-        d = 0
-    else:
-        d = int(norm(h1_t - h1_prev) <= tau)
-
-    if d == 1:
-        h_out = h1_t              # skip heavy layers
-    else:
-        h_out = B_L_to_2(h1_t)    # run remaining layers
-
-    h1_prev = h1_t
-
-I_SR = decode(h_out)
-```
-
 ---
 
 ## 실험 결과 (Experiments)
@@ -168,11 +142,11 @@ I_SR = decode(h_out)
 - **CLIP-IQA (높을수록 좋음)**: “사람 눈에 얼마나 진짜 같은가”를 반영  
 - **SMS (낮을수록 좋음)**: “구조/경계가 GT와 얼마나 일치하는가”를 반영
 
-3) **SMS 정의(수식)**
+3) **SMS 정의(수식)**  
 $$
 SMS(I_{SR}, I_{GT})
 = \frac{1}{HW}\left\|F_{seg}(I_{SR}) - F_{seg}(I_{GT})\right\|_2^2
-$$
+$$  
 - $I_{GT}$: 정답 고해상도 이미지  
 - $F_{seg}$: segmentation function(요약본에서는 **SAM** 사용)  
 - $H,W$: 이미지 크기(정규화 위해 $1/HW$로 평균) 
