@@ -16,7 +16,7 @@ kramdown:
   input: kramdown
   hard_wrap: false
   auto_ids: true
-  # math_engine: mathjax
+  math_engine: mathjax
 
 remote_theme: mmistakes/minimal-mistakes
 
@@ -81,7 +81,7 @@ defaults:
       related: false
       toc: false
       toc_sticky: false
-      mathjax: false
+      mathjax: true
 
   - scope:
       path: "_pages"
