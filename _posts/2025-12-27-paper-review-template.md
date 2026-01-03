@@ -64,50 +64,50 @@ tags:
 - 출력: 초해상도 이미지 $I_{SR}$
 
 **Stage 1 (Base 생성):**
-- \(I_{LR}\) → (Diffusion, SR3) → base 이미지 \(x_1\)  
-- denoising step 수: \(T_1\) (요약본 설정 예: \(T_1=500\)) 
+- $I_{LR}$ → (Diffusion, SR3) → base 이미지 $x_1$  
+- denoising step 수: $T_1$ (요약본 설정 예: $T_1=500$) 
 
 **Stage 2 (Detail 복원 + 구조 보존 + 가속):**
-- VLM: \(x_1\)을 보고 **semantic conditioning** \(c_{VLM}\) 생성  
-- ControlNet: \(x_1\)에서 구조/윤곽 기반 guidance \(g\) 생성  
-- Diffusion(U-Net): \(x_1, c_{VLM}, g\)로 디테일 강화  
-- denoising step 수: \(T_2\) (요약본 설정 예: \(T_2=50\)) 
+- VLM: $x_1$을 보고 **semantic conditioning** $c_{VLM}$ 생성  
+- ControlNet: $x_1$에서 구조/윤곽 기반 guidance $g$ 생성  
+- Diffusion(U-Net): $x_1, c_{VLM}, g$로 디테일 강화  
+- denoising step 수: $T_2$ (요약본 설정 예: $T_2=50$) 
 ### FB Cache(Dynamic Inference) 수식 정리
-denoising step \(t\)에서 U-Net 블록의 “가벼운 앞단(첫 sub-layer)”만 먼저 계산하여 변화량을 보고, 나머지 무거운 연산을 스킵할지 결정합니다.
+denoising step $t$에서 U-Net 블록의 “가벼운 앞단(첫 sub-layer)”만 먼저 계산하여 변화량을 보고, 나머지 무거운 연산을 스킵할지 결정합니다.
 
-- \(t\): denoising step index  
-- \(e_t\): step \(t\)에서의 U-Net 내부 중간 표현(feature)  
-- \(c_{VLM}\): VLM이 제공하는 의미 조건(텍스트/semantic)  
-- \(g\): ControlNet이 제공하는 구조/조건 가이던스  
-- \(B_1(\cdot)\): 블록 내부 **첫 sub-layer**(가벼운 앞단 연산) 
+- $t$: denoising step index  
+- $e_t$: step $t$에서의 U-Net 내부 중간 표현(feature)  
+- $c_{VLM}$: VLM이 제공하는 의미 조건(텍스트/semantic)  
+- $g$: ControlNet이 제공하는 구조/조건 가이던스  
+- $B_1(\cdot)$: 블록 내부 **첫 sub-layer**(가벼운 앞단 연산) 
 **앞단 출력 및 변화량**
-\[
+$$
 h_1^{(t)} = B_1(e_t,\, t,\, c_{VLM},\, g)
-\]
-\[
+$$
+$$
 \Delta h_1^{(t)} = h_1^{(t)} - h_1^{(t-1)}
-\]
+$$
 
 **스킵 여부 결정(Thresholding)**
-\[
+$$
 d^{(t)} =
 \begin{cases}
 0, & t = 1\\
 \Pi\left[ \left\|\Delta h_1^{(t)}\right\| \le \tau \right], & t>1
 \end{cases}
-\]
-- \(\|\cdot\|\): 노름(norm)  
-- \(\tau\): 임계값(요약본에서는 예시로 0.3, 0.5 등을 사용)  
-- \(\Pi[\cdot]\): indicator(조건 참이면 1, 거짓이면 0)
+$$
+- $\|\cdot\|$: 노름(norm)  
+- $\tau$: 임계값(요약본에서는 예시로 0.3, 0.5 등을 사용)  
+- $\Pi[\cdot]$: indicator(조건 참이면 1, 거짓이면 0)
 **최종 출력(나머지 레이어 실행/스킵)**
-\[
+$$
 h_{out}^{(t)}=
 \begin{cases}
 h_1^{(t)}, & d^{(t)}=1 \quad(\text{남은 레이어 생략})\\
 B_{L\to 2}\!\left(h_1^{(t)}\right), & d^{(t)}=0 \quad(\text{남은 레이어 실행})
 \end{cases}
-\]
-- \(B_{L\to 2}\): 블록의 나머지 레이어(2~L층) = **연산량이 큰 구간**
+$$
+- $B_{L\to 2}$: 블록의 나머지 레이어(2~L층) = **연산량이 큰 구간**
 ---
 
 ## 모델 구조 (Model Pipeline)
@@ -169,13 +169,13 @@ I_SR = decode(h_out)
 - **SMS (낮을수록 좋음)**: “구조/경계가 GT와 얼마나 일치하는가”를 반영
 
 3) **SMS 정의(수식)**
-\[
+$$
 SMS(I_{SR}, I_{GT})
 = \frac{1}{HW}\left\|F_{seg}(I_{SR}) - F_{seg}(I_{GT})\right\|_2^2
-\]
-- \(I_{GT}\): 정답 고해상도 이미지  
-- \(F_{seg}\): segmentation function(요약본에서는 **SAM** 사용)  
-- \(H,W\): 이미지 크기(정규화 위해 \(1/HW\)로 평균) 
+$$
+- $I_{GT}$: 정답 고해상도 이미지  
+- $F_{seg}$: segmentation function(요약본에서는 **SAM** 사용)  
+- $H,W$: 이미지 크기(정규화 위해 $1/HW$로 평균) 
 
 4) **정성적(qualitative) 결과 요약**
 - ESRGAN: 부드러워져 경계/텍스처 뭉개짐  
@@ -184,7 +184,7 @@ SMS(I_{SR}, I_{GT})
 
 5) **속도/효율(Table 2 요지)**
 - WHU-RS19에서 이미지 1장 생성 시간 비교 시, 제안 모델이 **Dynamic Inference(τ 조절)** 덕분에 빠르다는 정리  
-- τ를 키우면(스킵을 더 많이 허용) 더 빨라지되 품질을 일부 양보하는 trade-off가 존재 
+- $\tau$를 키우면(스킵을 더 많이 허용) 더 빨라지되 품질을 일부 양보하는 trade-off가 존재 
 
 ---
 
@@ -199,17 +199,17 @@ SMS(I_{SR}, I_{GT})
 **장점**
 - (정확성) 의미를 처음부터 강주입하지 않아서 **환각/구조 왜곡을 줄이는 설계가 논리적으로 타당**
 - (품질) 원격탐사에서 중요한 **경계/구획/도로 구조 보존**을 평가 지표까지 포함해 정면으로 다룸
-- (실용성) τ 기반 스킵으로 **속도-품질을 사용자가 조절**할 수 있어 현업 적용 친화적
+- (실용성) $\tau$ 기반 스킵으로 **속도-품질을 사용자가 조절**할 수 있어 현업 적용 친화적
 
 **아쉬운 점(리스크)**
 - Stage 1에 **Full diffusion(SR3)**를 쓰는 구조라, 완전한 경량화에는 한계가 있고(요약본도 이를 문제의식으로 다룸), 실제 운영환경에서 비용/지연이 남을 수 있음
 - 구조 평가가 **SAM 기반 segmentation**에 의존하므로, “SAM이 잘 자르는 대상”에 유리한 편향 가능성
-- τ, \(T_1/T_2\) 등 하이퍼파라미터가 늘어 **튜닝 부담**이 생길 수 있음
+- $\tau$, $T_1/T_2$ 등 하이퍼파라미터가 늘어 **튜닝 부담**이 생길 수 있음
 
 ### 아이디어: 내 연구나 프로젝트에 어떻게 적용할 수 있을까?
 - **(일반화) “Base→Refine” 분리 전략**을 다른 생성 문제에 적용  
   예: 의료영상 SR, 산업검사용 현미경 이미지, PCB 패턴 복원 등에서 “사실 기반 복원” 후 “의미 기반 보정”으로 환각을 줄이는 구조가 유효할 수 있습니다.
 - **(가속) diffusion U-Net의 동적 스킵을 모듈화**  
-  \(\Delta h\) 기반 스킵 판단은 SR뿐 아니라 diffusion이 쓰이는 복원/번역/생성 전반에 재사용 가능하므로, 사용자 프로젝트에서 **추론 비용 절감 프레임워크**로 가져갈 수 있습니다.
+  $\Delta h$ 기반 스킵 판단은 SR뿐 아니라 diffusion이 쓰이는 복원/번역/생성 전반에 재사용 가능하므로, 사용자 프로젝트에서 **추론 비용 절감 프레임워크**로 가져갈 수 있습니다.
 - **(평가) 구조 보존 지표 설계**  
   SR 결과가 “보기만 좋고 구조가 틀리는” 문제를 겪는다면, SMS처럼 **Downstream task(분할/검출)의 일치도**를 평가로 포함시키는 방향이 연구적으로 설득력이 큽니다.
